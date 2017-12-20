@@ -72,7 +72,7 @@ class SiteController extends Controller
             // }
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            if(Yii::$app->user->identity->role=='student'&&)
+            if(Yii::$app->user->identity->role=='student')
                 return $this->redirect('../student/index');
             else if(Yii::$app->user->identity->role=='lecturer')
                 return $this->redirect('../lecturer/index');

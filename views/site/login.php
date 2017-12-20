@@ -13,8 +13,7 @@ use kartik\builder\Form;
         ]); 
 
         echo $form->field($model, 'username')->textInput(['placeholder'=>'Username'])->label(false);
-        echo $form->field($model, 'password')->passwordInput(['placeholder'=>'Password'])->label(false);
-        echo $form->field($model, 'role')->dropDownList(['student'=>'student','lecturer'=>'lecturer'])->label(false); ?>
+        echo $form->field($model, 'password')->passwordInput(['placeholder'=>'Password'])->label(false);?>
         <div class="form-group">
             <?= Html::submitButton('Login', ['class' => 'btn btn-primary']) ?>
         </div>
