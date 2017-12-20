@@ -100,7 +100,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		        \yiister\gentelella\widgets\StatsTile::widget(
 		            [
 		                'header' => 'Teknik Informatika - Semester 2',
-		                'number' => Html::a('Struktur Data', ['site/course'], ['class' => 'profile-link']),
+		                'number' => Html::a('Struktur Data', ['student/course'], ['class' => 'profile-link']),
 		            ]
 		        )
 		        ?>

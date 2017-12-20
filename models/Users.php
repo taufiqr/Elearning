@@ -11,16 +11,17 @@ use Yii;
  * @property string $username
  * @property string $password
  * @property string $nama
+ * @property string $no_induk
  * @property string $email
  * @property integer $semester
  * @property string $departement
  * @property string $alamat
  * @property string $role
  *
+ * @property Course[] $courses
  * @property Enrollment[] $enrollments
  */
 class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
-
 {
     /**
      * @inheritdoc
@@ -36,8 +37,8 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'password', 'nama', 'email', 'semester', 'departement', 'alamat', 'role'], 'required'],
-            [['semester'], 'integer'],
+            [['username', 'password', 'nama', 'no_induk', 'email', 'semester', 'departement', 'alamat', 'role'], 'required'],
+            [['no_induk', 'semester'], 'integer'],
             [['username', 'password', 'nama', 'email'], 'string', 'max' => 255],
             [['departement', 'alamat'], 'string', 'max' => 100],
             [['role'], 'string', 'max' => 10],
@@ -54,6 +55,7 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'username' => 'Username',
             'password' => 'Password',
             'nama' => 'Nama',
+            'no_induk' => 'No Induk',
             'email' => 'Email',
             'semester' => 'Semester',
             'departement' => 'Departement',
@@ -65,11 +67,18 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getCourses()
+    {
+        return $this->hasMany(Course::className(), ['id_lecturer' => 'id_user']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getEnrollments()
     {
         return $this->hasMany(Enrollment::className(), ['id_student' => 'id_user']);
     }
-
 
     public static function findIdentity($id_user)
     {
